@@ -21,4 +21,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
     url(r'^login/', views.login),
+    url(r'^drives/$', views.display),
+    url(r'^drive/create/$', views.create_drive),
+    url(r'^drive/detail/(?P<pk>.*)/$', views.drive_detail),
+    url(r'^drive/update/(?P<pk>.*)/$', views.update_drive),
+    url(r'^drive/delete/(?P<pk>.*)/$', views.delete_drive),
+    url(r'^students/(?P<pk>.*)/$'),
 ]

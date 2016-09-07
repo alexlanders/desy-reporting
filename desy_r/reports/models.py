@@ -3,17 +3,43 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+class Student(models.Model):
+    #
+    user = models.OneToOneField(User)
+    lenses = models.NullBooleanField(default=False)
+    permit = models.NullBooleanField(default=False)
+
+    def __str__(self):
+        return "{}".format(self.user.username)
+
+
+class Instructor(models.Model):
+    #
+    user = models.OneToOneField(User)
+    instructor_id = models.IntegerField()
+
+    def __str__(self):
+        return "{}".format(self.user.username)
+
 
 class Drive(models.Model):
     # Attributes for drives in db
+    student = models.ForeignKey(Student, related_name='drives')
+    instructor = models.ForeignKey(Instructor, related_name='drives')
     date = models.DateField(auto_now=False)
     updated = models.DateField(auto_now=False)
     score = models.PositiveSmallIntegerField()
     deductions = models.IntegerField() #TODO: Can deductions be negative?
     comments = models.CharField(max_length=256)
-    hrs_driven = models.FloatField()
-    hrs_observed = models.FloatField()
-    signature = models.NullBooleanField()
+    hours_driven = models.FloatField(default=1)
+    hours_observed = models.FloatField(default=1)
+    signature = models.NullBooleanField(default=False)
+
+    def absolute_url(self):
+        return '/drive/detail/{}'.format(self.id)
+
+    def __str__(self):
+        return "Instructor: {} - Student: {}, Score: {}".format(self.instructor, self.student, self.score)
 
 
 class Maneuver(models.Model):
@@ -21,14 +47,5 @@ class Maneuver(models.Model):
     man_id = models.CharField(max_length=5)
     desc = models.CharField(max_length=128)
 
-
-class Student(models.Model):
-    #
-    user = models.OneToOneField(User)
-    lenses = models.BooleanField(default=False)
-    permit = models.BooleanField(default=False)
-
-
-class Instructor(models.Model):
-    #
-    user = models.OneToOneField(User)
+    def __str__(self):
+        return "{} {}".format(self.man_id, self.desc)
