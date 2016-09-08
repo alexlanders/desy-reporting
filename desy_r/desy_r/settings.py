@@ -77,12 +77,12 @@ WSGI_APPLICATION = 'desy_r.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'desy',
-        'HOST': 'camrock.cxdrbyuqlzmp.us-west-2.rds.amazonaws.com',
-        'PORT': '5432',
-        'USER': AWS_RDS_USER,
-        'PASSWORD': AWS_RDS_PASS,
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mysql',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': 'Manf0rd123',
     }
 }
 
