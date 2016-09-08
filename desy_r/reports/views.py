@@ -27,19 +27,28 @@ def create_drive(request):
     return render(request, 'drive_form.html', context)
 
 def create_student():
-    form = DriveForm(request.POST or None)
+    form = StudentForm(request.POST or None)
     if form.is_valid():
-        drive = form.save(commit=False)
-        drive.updated = datetime.now()
-        drive.save()
+        student = form.save(commit=False)
+        student.updated = datetime.now()
+        student.save()
 
-        return HttpResponseRedirect(drive.absolute_url())
+        return HttpResponseRedirect(student.absolute_url())
 
     context = {'form': form}
-    return render(request, 'drive_form.html', context)
+    return render(request, 'student_form.html', context)
 
 def create_instructor():
-    pass
+    form = InstructorForm(request.POST or None)
+    if form.is_valid():
+        instructor = form.save(commit=False)
+        instructor.updated = datetime.now()
+        instructor.save()
+
+        return HttpResponseRedirect(instructor.absolute_url())
+
+    context = {'form': form}
+    return render(request, 'instructor_form.html', context)
 
 def drive_detail(request):
     pass
