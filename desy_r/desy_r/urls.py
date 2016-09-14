@@ -26,5 +26,11 @@ urlpatterns = [
     url(r'^drive/detail/(?P<pk>.*)/$', views.drive_detail),
     url(r'^drive/update/(?P<pk>.*)/$', views.update_drive),
     url(r'^drive/delete/(?P<pk>.*)/$', views.delete_drive),
-    url(r'^students/(?P<pk>.*)/$'),
+    url(r'^forms/form/$', views.form),
+    url(r'^forms/form_advanced/$', views.form_advanced),
+    url(r'^forms/form_validation/$', views.form_validation),
+    url(r'^forms/form_wizard/$', views.form_wizard),
+    url(r'^forms/form_upload/$', views.form_upload),
+    url(r'^forms/form_buttons/$', views.form_buttons),
+    #url(r'^students/(?P<pk>.*)/$'),
 ]

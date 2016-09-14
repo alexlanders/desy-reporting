@@ -4,6 +4,17 @@ from datetime import datetime
 from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm
 
 
+def add_drive():
+
+    initial_data = dict()
+
+    initial_data['']
+
+    form = DriveForm(data)
+
+
+    return "Done."
+
 def home(request):
     return render(request, 'index.html', {})
 
@@ -58,3 +69,21 @@ def update_drive(request):
 
 def delete_drive(request):
     pass
+
+def form(request):
+    return render(request, 'form.html', {})
+
+def form_advanced(request):
+    return render(request, 'form_advanced.html', {})
+
+def form_validation(request):
+    return render(request, 'form_validation.html', {})
+
+def form_wizard(request):
+    return render(request, 'form_wizard.html', {})
+
+def form_upload(request):
+    return render(request, 'form_upload.html', {})
+
+def form_buttons(request):
+    return render(request, 'form_buttons.html', {})

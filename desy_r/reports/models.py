@@ -24,13 +24,13 @@ class Instructor(models.Model):
 
 class Drive(models.Model):
     # Attributes for drives in db
-    student = models.ForeignKey(Student, related_name='drives')
-    instructor = models.ForeignKey(Instructor, related_name='drives')
+    student = models.ForeignKey(Student, related_name='drives', null=True)
+    instructor = models.ForeignKey(Instructor, related_name='drives', null=True)
     date = models.DateField(auto_now=False)
-    updated = models.DateField(auto_now=False)
+    updated = models.DateField(auto_now=False, null=True)
     score = models.PositiveSmallIntegerField()
-    deductions = models.IntegerField() #TODO: Can deductions be negative?
-    comments = models.CharField(max_length=256)
+    deductions = models.IntegerField()
+    comments = models.TextField(max_length=256)
     hours_driven = models.FloatField(default=1)
     hours_observed = models.FloatField(default=1)
     signature = models.NullBooleanField(default=False)
