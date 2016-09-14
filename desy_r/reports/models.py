@@ -10,16 +10,16 @@ class Student(models.Model):
     permit = models.NullBooleanField(default=False)
 
     def __str__(self):
-        return "{}".format(self.user.username)
+        return "{0.first_name} {0.last_name}".format(self.user)
 
 
 class Instructor(models.Model):
     #
     user = models.OneToOneField(User)
-    instructor_id = models.IntegerField()
+    instructor_id = models.IntegerField() #TODO: smallpositiveint field
 
     def __str__(self):
-        return "{}".format(self.user.username)
+        return "{0.first_name} {0.last_name}".format(self.user)
 
 
 class Drive(models.Model):
