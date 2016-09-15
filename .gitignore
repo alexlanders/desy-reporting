@@ -68,6 +68,8 @@ artifacts/
 *.pidb
 *.svclog
 *.scc
+*.pyc
+
 
 # Chutzpah Test files
 _Chutzpah*
@@ -253,3 +255,4 @@ paket-files/
 
 
 migrations
+__pycache__
