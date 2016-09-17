@@ -30,11 +30,11 @@ class DriveSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Drive
-        fields = ('__all__',)
+        fields = '__all__'
 
 
 class DriveEventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DriveEvent
-        fields = ('__all__',)
+        fields = '__all__'
