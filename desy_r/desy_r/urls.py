@@ -13,9 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from reports import views
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register(r'students', views.StudentViewSet)
+router.register(r'instructors', views.StudentViewSet)
+router.register(r'drives', views.StudentViewSet)
+router.register(r'drive_events', views.StudentViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,5 +40,7 @@ urlpatterns = [
     url(r'^forms/form_wizard/$', views.form_wizard),
     url(r'^forms/form_upload/$', views.form_upload),
     url(r'^forms/form_buttons/$', views.form_buttons),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api/', include(router.urls)),
     #url(r'^students/(?P<pk>.*)/$'),
 ]

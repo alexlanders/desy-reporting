@@ -42,10 +42,10 @@ class Drive(models.Model):
         return "Instructor: {} - Student: {}, Score: {}".format(self.instructor, self.student, self.score)
 
 
-class Maneuver(models.Model):
-    # Maneuvers inside of Drives
+class DriveEvent(models.Model):
+    # Objectives inside of Drives
     man_id = models.CharField(max_length=5)
-    desc = models.CharField(max_length=128)
+    description = models.CharField(max_length=128)
 
     def __str__(self):
         return "{} {}".format(self.man_id, self.desc)
