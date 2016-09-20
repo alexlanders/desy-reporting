@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Student, Instructor, Drive, DriveEvent
+from .models import Student, Instructor, Drive, Objective
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -33,8 +33,8 @@ class DriveSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DriveEventSerializer(serializers.ModelSerializer):
+class ObjectiveSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = DriveEvent
+        model = Objective
         fields = '__all__'

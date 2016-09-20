@@ -16,7 +16,8 @@ class Student(models.Model):
 class Instructor(models.Model):
     #
     user = models.OneToOneField(User)
-    instructor_id = models.IntegerField() #TODO: smallpositiveint field
+    instructor_id = models.PositiveSmallIntegerField(max_length=3)
+    school = models.ForeignKey(School, related_name='instructors')
 
     def __str__(self):
         return "{0.first_name} {0.last_name}".format(self.user)
@@ -42,10 +43,30 @@ class Drive(models.Model):
         return "Instructor: {} - Student: {}, Score: {}".format(self.instructor, self.student, self.score)
 
 
-class DriveEvent(models.Model):
-    # Objectives inside of Drives
-    man_id = models.CharField(max_length=5)
+class Course(models.Model):
+    title = models.CharField(max_length=96)
+    course_id = models.PositiveSmallIntegerField(max_length=3)
+    start_date = models.DateField(auto_now=False)
+    end_date = models.DateField(auto_now=False)
+    duration = models.DurationField()
+    is_complete = models.BooleanField(default=False)
+    school = models.ForeignKey(related_name='courses', null=True)
+
+    def __str__(self):
+        return "{}".format(self.title)
+
+    def save(self, *args, **kwargs):
+        self.duration = self.end_date - self.start_date
+        return super(Course, *args, **kwargs)
+
+
+class Objective(models.Model):
+    # Objectives for course
+    target = models.IntegerField(choices=())
     description = models.CharField(max_length=128)
+    course = models.ForeignKey(Course, related_name='objectives')
 
     def __str__(self):
         return "{} {}".format(self.man_id, self.desc)
+
+

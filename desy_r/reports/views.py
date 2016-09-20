@@ -5,7 +5,8 @@ from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm
 
 
 def home(request):
-    return render(request, 'index.html', {})
+    context = {}
+    return render(request, 'index.html', context)
 
 
 def login(request):
@@ -90,3 +91,4 @@ def form_upload(request):
 
 def form_buttons(request):
     return render(request, 'form_buttons.html', {})
+

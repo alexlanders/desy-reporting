@@ -256,3 +256,4 @@ paket-files/
 
 migrations
 __pycache__
+.pyc

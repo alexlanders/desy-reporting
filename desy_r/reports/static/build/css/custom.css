@@ -2,6 +2,11 @@
 .left_col {
   background: #2A3F54; }
 
+.current-class{
+  justify-content: flex-end;
+  background-color: #26B99A;
+}
+
 .nav-sm .container.body .col-md-3.left_col {
   width: 70px;
   padding: 0;

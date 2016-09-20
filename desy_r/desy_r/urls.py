@@ -23,7 +23,7 @@ router = routers.DefaultRouter()
 router.register(r'students', api.StudentViewSet)
 router.register(r'instructors', api.InstructorViewSet)
 router.register(r'drives', api.DriveViewSet)
-router.register(r'drive_events', api.DriveEventViewSet)
+router.register(r'objective', api.ObjectiveViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
