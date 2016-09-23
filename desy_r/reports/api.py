@@ -1,5 +1,5 @@
-from .serializers import StudentSerializer, InstructorSerializer, DriveSerializer, ObjectiveSerializer
-from .models import Student, Instructor, Drive, Objective
+from .serializers import StudentSerializer, InstructorSerializer, DriveSerializer, ObjectiveSerializer, CourseSerializer
+from .models import Student, Instructor, Drive, Objective, Course
 from rest_framework import viewsets
 
 
@@ -21,3 +21,8 @@ class DriveViewSet(viewsets.ModelViewSet):
 class ObjectiveViewSet(viewsets.ModelViewSet):
     queryset = Objective.objects.all()
     serializer_class = ObjectiveSerializer
+
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer

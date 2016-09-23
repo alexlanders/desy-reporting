@@ -24,6 +24,7 @@ router.register(r'students', api.StudentViewSet)
 router.register(r'instructors', api.InstructorViewSet)
 router.register(r'drives', api.DriveViewSet)
 router.register(r'objective', api.ObjectiveViewSet)
+router.register(r'courses', api.CourseViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -42,5 +43,7 @@ urlpatterns = [
     url(r'^forms/form_buttons/$', views.form_buttons),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/', include(router.urls)),
+    url(r'^students/all/', views.display),
+    url(r'^students/(?P<pk>\d*)/', views.student_detail),
     #url(r'^students/(?P<pk>.*)/$'),
 ]
