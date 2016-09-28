@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-from private.secretsettings import AWS_RDS_USER, AWS_RDS_PASS
+from private.secretsettings import AWS_RDS_USER, AWS_RDS_PASS, S_KEY
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-#2^f&v4_0nd!6%9oi*stx1pb6ja=fuoyv%1kg_d=ypia*9(7+'
+SECRET_KEY = S_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'desy_r.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mysql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'desy_dev',
         'HOST': 'localhost',
-        'PORT': '3306',
-        'USER': 'root',
-        'PASSWORD': 'Manf0rd123',
+        'PORT': '5432',
+        'USER': 'admin',
+        'PASSWORD': '1234abcd',
     }
 }
 

@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import AuthenticationForm
 from django import forms
-from .models import Drive, Student, Instructor, Course, Objective
+from .models import Drive, Student, Instructor, Course, Objective, Member
 
 
 class DriveForm(forms.ModelForm):
@@ -37,6 +37,14 @@ class ObjectiveForm(forms.ModelForm):
     class Meta:
         model = Objective
         fields = '__all__'
+
+
+class MemberForm(forms.ModelForm):
+
+    class Meta:
+        model = Member
+        fields = '__all__'
+
 
 class LoginForm():
     pass

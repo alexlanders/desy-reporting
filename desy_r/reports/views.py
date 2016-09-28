@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from datetime import datetime
-from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm, CourseForm
-from .models import Student
+from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm, CourseForm, MemberForm
+from .models import Student, Member
 
 
 def home(request):
@@ -18,7 +18,7 @@ def login(request):
 
 def display(request):
     students = Student.objects.all()
-    context = {'students':students}
+    context = {'students': students}
     return render(request, 'students.html', context)
 
 
@@ -34,7 +34,7 @@ def create_drive(request):
     return render(request, 'drive_form.html', context)
 
 
-def create_student():
+def create_student(request):
     form = StudentForm(request.POST or None)
     if form.is_valid():
         student = form.save(commit=False)
@@ -47,7 +47,7 @@ def create_student():
     return render(request, 'student_form.html', context)
 
 
-def create_instructor():
+def create_instructor(request):
     form = InstructorForm(request.POST or None)
     if form.is_valid():
         instructor = form.save(commit=False)
@@ -97,7 +97,7 @@ def form_buttons(request):
 
 
 def student_detail(request, pk=None):
-    student = Student.objects.get(id=pk)
+    student = Member.objects.get(id=pk)
     context = {'student':student}
     return render(request, 'student.html', context)
 

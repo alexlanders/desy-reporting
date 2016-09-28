@@ -1,0 +1,120 @@
+[
+  {
+    "model": "reports.member",
+    "pk": 1,
+    "fields": {
+      "user": 3,
+      "total_hours_driven": 0,
+      "total_hours_observed": 0
+    }
+  },
+  {
+    "model": "reports.member",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "total_hours_driven": 0,
+      "total_hours_observed": 0
+    }
+  },
+  {
+    "model": "reports.member",
+    "pk": 3,
+    "fields": {
+      "user": 5,
+      "total_hours_driven": 0,
+      "total_hours_observed": 0
+    }
+  },
+  {
+    "model": "reports.member",
+    "pk": 4,
+    "fields": {
+      "user": 6,
+      "total_hours_driven": 0,
+      "total_hours_observed": 0
+    }
+  },
+  {
+    "model": "reports.member",
+    "pk": 5,
+    "fields": {
+      "user": 4,
+      "total_hours_driven": 0,
+      "total_hours_observed": 0
+    }
+  },
+  {
+    "model": "reports.member",
+    "pk": 6,
+    "fields": {
+      "user": 7,
+      "total_hours_driven": 0,
+      "total_hours_observed": 0
+    }
+  },
+  {
+    "model": "reports.student",
+    "pk": 1,
+    "fields": {
+      "lenses": true,
+      "permit": true
+    }
+  },
+  {
+    "model": "reports.student",
+    "pk": 2,
+    "fields": {
+      "lenses": false,
+      "permit": true
+    }
+  },
+  {
+    "model": "reports.student",
+    "pk": 3,
+    "fields": {
+      "lenses": false,
+      "permit": false
+    }
+  },
+  {
+    "model": "reports.student",
+    "pk": 5,
+    "fields": {
+      "lenses": true,
+      "permit": true
+    }
+  },
+  {
+    "model": "reports.student",
+    "pk": 6,
+    "fields": {
+      "lenses": false,
+      "permit": true
+    }
+  },
+  {
+    "model": "reports.instructor",
+    "pk": 4,
+    "fields": {
+      "instructor_id": 1,
+      "school": null
+    }
+  },
+  {
+    "model": "reports.drive",
+    "pk": 1,
+    "fields": {
+      "student": 6,
+      "instructor": 4,
+      "date": "2016-09-24",
+      "updated": "2016-09-24",
+      "score": 94,
+      "deductions": 6,
+      "comments": "Not so great.",
+      "hours_driven": 1.0,
+      "hours_observed": 1.0,
+      "signature": true
+    }
+  }
+]
