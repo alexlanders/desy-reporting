@@ -101,3 +101,7 @@ def student_detail(request, pk=None):
     context = {'student':student}
     return render(request, 'student.html', context)
 
+def calendar_page(request):
+    context = {}
+    return render(request, 'calendar.html', context)
+

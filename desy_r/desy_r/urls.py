@@ -45,5 +45,6 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^students/all/', views.display),
     url(r'^students/(?P<pk>\d*)/', views.student_detail),
+    url(r'^calendar/', views.calendar_page),
     #url(r'^students/(?P<pk>.*)/$'),
 ]
