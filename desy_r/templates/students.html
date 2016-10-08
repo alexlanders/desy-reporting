@@ -65,8 +65,10 @@
                         </tr>
                       </thead>
 
-                      <tbody>
+
+                            <tbody>
                       {% for student in students %}
+
                           <tr role="row" class="odd">
                               <td tabindex="0" class="sorting_1"><a href="/students/{{student.id}}">{{student.user.first_name}} {{student.user.last_name}}</a></td>
                               <td>{{student.user.email}}</td>
@@ -76,9 +78,40 @@
                               <td>{{student.lenses}}</td>
                               <td>{{student.permit}}</td>
                             </tr>
+
                       {% endfor %}
                       </tbody>
-                    </table><div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div><div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="datatable-buttons_previous"><a href="#" aria-controls="datatable-buttons" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="datatable-buttons" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="datatable-buttons" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="datatable-buttons_next"><a href="#" aria-controls="datatable-buttons" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div>
+                        </table>
+                        <div class="dataTables_info" id="datatable-buttons_info" role="status" aria-live="polite">
+                            Showing page {{ students.number }} of {{ students.paginator.num_pages }}
+                        </div>
+                        <div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button previous disabled" id="datatable-buttons_previous">
+                                    {% if students.has_previous %}
+                                    <a href="?page={{ students.previous_page_number }}" aria-controls="datatable-buttons" data-dt-idx="0"
+                                        tabindex="0">Previous</a>
+                                    {% endif %}
+                                </li>
+
+                                <li class="paginate_button active"><a href="{{ students.paginator.page }}" aria-controls="datatable-buttons"
+                                                                      data-dt-idx="1" tabindex="0">{{ students.paginator.page }}</a></li>
+                                {{ student_range }}
+                                {% for page in student_range %}
+                                    {% if forloop.counter != 1 %} | {% endif %}
+
+                                    <li class="paginate_button "><a href="?page={{ page }}" aria-controls="datatable-buttons"
+                                                                data-dt-idx="2" tabindex="0">{{ page }}</a></li>
+                                {% endfor %}
+
+                                <li class="paginate_button next" id="datatable-buttons_next">
+                                    {% if students.has_next %}
+                                    <a href="?page={{ students.next_page_number }}" aria-controls="datatable-buttons" data-dt-idx="7" tabindex="0">Next</a>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                   </div>
              </div>
             </div>

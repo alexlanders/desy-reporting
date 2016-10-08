@@ -69,8 +69,8 @@ class TestDriveMethod(TestCase):
 
         self.assertEqual(self.random_drive.hours_driven, random_drive_hours_driven)
 
-        next_drive = mixer.blend('reports.Drive', student=self.random_drive.student,
-                                 instructor=self.random_drive.instructor, deductions=1, score=91)
+        next_drive = mixer.blend('reports.Drive', deductions=1, score=91, student=self.random_drive.student,
+                                 instructor=self.random_drive.instructor)
 
         total_random_hours = random_drive_hours_driven + next_drive.hours_driven
 

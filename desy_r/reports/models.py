@@ -5,14 +5,14 @@ from .choices import COUNTRIES, STATES, PROVINCES
 
 class Member(models.Model):
     user = models.OneToOneField(User)
-    total_hours_driven = models.PositiveSmallIntegerField(default=0, null=True)
-    total_hours_observed = models.PositiveSmallIntegerField(default=0, null=True)
 
 
 class Student(Member):
     #
     lenses = models.NullBooleanField(default=False)
     permit = models.NullBooleanField(default=False)
+    total_hours_driven = models.PositiveSmallIntegerField(default=0, null=True)
+    total_hours_observed = models.PositiveSmallIntegerField(default=0, null=True)
 
     class Meta:
         ordering = ['-pk']
@@ -55,6 +55,7 @@ class Drive(models.Model):
         if self.id is None:
             self.student.total_hours_driven += self.hours_driven
             self.student.total_hours_observed += self.hours_observed
+            self.student.save()
         return self
 
     def absolute_url(self):
@@ -71,6 +72,7 @@ class Drive(models.Model):
 
 class Course(models.Model):
     title = models.CharField(max_length=96)
+    student = models.ForeignKey(Student, related_name='courses', null=True)
     course_id = models.PositiveSmallIntegerField()
     start_date = models.DateField(auto_now=False)
     end_date = models.DateField(auto_now=False)

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import islice
 from datetime import datetime
 from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm, CourseForm, MemberForm
 from .models import Student, Member
@@ -16,14 +18,27 @@ def login(request):
     return render(request, 'login.html', context)
 
 
-def display(request):
-    students = Student.objects.all()
-    context = {'students': students}
+def all_students(request):
+    student_query = Student.objects.all()
+    paginator = Paginator(student_query, 25)
+
+    page = request.GET.get('page')
+    try:
+        # One page worth of students
+        students = paginator.page(page)
+        student_range = list(paginator.page_range)[int(page):int(page)+5]
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        students = paginator.page(1)
+        student_range = list(paginator.page_range)[0:5]
+
+    print(list(student_range))
+    context = {'students': students, 'student_range': list(student_range)}
     return render(request, 'students.html', context)
 
 
 def create_drive(request):
-    form = StudentForm(request.POST or None)
+    form = DriveForm(request.POST or None)
     if form.is_valid():
         student = form.save(commit=False)
         student.save()
@@ -96,10 +111,18 @@ def form_buttons(request):
     return render(request, 'form_buttons.html', {})
 
 
+def display(request):
+    return render(request, 'index.html', {})
+
+
 def student_detail(request, pk=None):
-    student = Member.objects.get(id=pk)
-    context = {'student':student}
+    student = Student.objects.get(id=pk)
+    recent_drives = student.drives.all()
+    drive_hours = ((student.total_hours_driven/6.75)*100)
+    observed_hours = ((student.total_hours_observed/10)*100)
+    context = {'student': student, 'recent_drives': recent_drives, 'drive_hours': drive_hours, 'observed_hours': observed_hours}
     return render(request, 'student.html', context)
+
 
 def calendar_page(request):
     context = {}

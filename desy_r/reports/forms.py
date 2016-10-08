@@ -8,6 +8,18 @@ class DriveForm(forms.ModelForm):
 
     class Meta:
         model = Drive
+        widgets = {
+            'student': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select Student', 'id': 'student'}),
+            'instructor': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select Instructor'}),
+            'score': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
+            'deductions': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
+            'hours_driven': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
+            'hours_observed': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
+            'date': forms.DateInput(attrs={'class': '', 'placeholder': ''}),
+            'signature': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
+            'comments': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
+        }
+
         exclude = ['hours_driven', 'hours_observed', 'updated', 'student', 'instructor']
 
 

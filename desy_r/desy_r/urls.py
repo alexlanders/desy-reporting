@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^forms/form_buttons/$', views.form_buttons),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api/', include(router.urls)),
-    url(r'^students/all/', views.display),
+    url(r'^students/all/', views.all_students),
     url(r'^students/(?P<pk>\d*)/', views.student_detail),
     url(r'^calendar/', views.calendar_page),
     #url(r'^students/(?P<pk>.*)/$'),
