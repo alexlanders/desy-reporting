@@ -527,6 +527,11 @@ table.no-margin .progress {
     margin-left: -10px
 }
 
+.grid {
+    display: flex;
+    justify-content: space-around;
+}
+
 .grid_slider .col-md-6 {
     padding: 0 40px
 }
@@ -1068,6 +1073,10 @@ legend {
 
 .demo-placeholder {
     height: 280px
+}
+
+.profile_details {
+    width: 10%;
 }
 
 .profile_details:nth-child(3n) {
@@ -2361,7 +2370,6 @@ span.section {
     line-height: inherit;
     color: #333;
     border: 0;
-    border-bottom: 1px solid #e5e5e5
 }
 
 .form-control {

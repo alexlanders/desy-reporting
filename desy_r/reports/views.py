@@ -117,10 +117,14 @@ def display(request):
 
 def student_detail(request, pk=None):
     student = Student.objects.get(id=pk)
-    recent_drives = student.drives.all()
+    recent_drives = student.drives.order_by('-date')
+    last_date = recent_drives.last().date.strftime("%B %d, %Y")
+    first_date = recent_drives.first().date.strftime("%B %d, %Y")
     drive_hours = ((student.total_hours_driven/6.75)*100)
     observed_hours = ((student.total_hours_observed/10)*100)
-    context = {'student': student, 'recent_drives': recent_drives, 'drive_hours': drive_hours, 'observed_hours': observed_hours}
+    context = {'student': student, 'last_date': last_date, 'first_date': first_date, 'recent_drives': recent_drives,
+               'drive_hours': drive_hours, 'observed_hours': observed_hours}
+
     return render(request, 'student.html', context)
 
 

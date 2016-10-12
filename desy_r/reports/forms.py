@@ -20,42 +20,42 @@ class DriveForm(forms.ModelForm):
             'comments': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
         }
 
-        exclude = ['hours_driven', 'hours_observed', 'updated', 'student', 'instructor']
+        fields = ['student', 'instructor', 'date', 'score', 'deductions', 'comments']
 
 
 class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ['lenses', 'permit']
 
 
 class InstructorForm(forms.ModelForm):
 
     class Meta:
         model = Instructor
-        fields = '__all__'
+        fields = ['instructor_id', 'school']
 
 
 class CourseForm(forms.ModelForm):
 
     class Meta:
         model = Course
-        fields = '__all__'
+        fields = ['title', 'student', 'course_id', 'start_date', 'end_date', 'duration', 'is_complete', 'school']
 
 
 class ObjectiveForm(forms.ModelForm):
 
     class Meta:
         model = Objective
-        fields = '__all__'
+        fields = ['course', 'objective_code', 'target', 'behavior_name', 'chapter', 'notes', 'state']
 
 
 class MemberForm(forms.ModelForm):
 
     class Meta:
         model = Member
-        fields = '__all__'
+        fields = ['user']
 
 
 class LoginForm():
