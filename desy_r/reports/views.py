@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import islice
 from datetime import datetime
 from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm, CourseForm, MemberForm
-from .models import Student, Member
+from .models import Student, Member, Course
 
 
 def home(request):
@@ -16,6 +16,24 @@ def login(request):
     form = LoginForm
     context = {'form': form}
     return render(request, 'login.html', context)
+
+
+def all_classes(request):
+    class_query = Course.objects.all()
+    paginator = Paginator(class_query, 25)
+
+    page = request.GET.get('page')
+    try:
+        # One page worth of students
+        classes = paginator.page(page)
+        class_range = list(paginator.page_range)[int(page):int(page) + 5]
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        classes = paginator.page(1)
+        class_range = list(paginator.page_range)[0:5]
+
+    context = {'classes': classes, 'class_range': list(class_range)}
+    return render(request, 'all_classes.html', context)
 
 
 def all_students(request):
@@ -32,7 +50,6 @@ def all_students(request):
         students = paginator.page(1)
         student_range = list(paginator.page_range)[0:5]
 
-    print(list(student_range))
     context = {'students': students, 'student_range': list(student_range)}
     return render(request, 'students.html', context)
 

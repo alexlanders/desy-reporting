@@ -14,12 +14,22 @@ class School(models.Model):
         return "{}".format(self.name)
 
 
+class Instructor(Member):
+    #
+    instructor_id = models.PositiveSmallIntegerField(null=True)
+    school = models.ForeignKey(School, related_name='instructors', null=True, blank=True)
+
+    def __str__(self):
+        return "{0.first_name} {0.last_name}".format(self.user)
+
+
 class Course(models.Model):
     title = models.CharField(max_length=96)
     course_id = models.PositiveSmallIntegerField()
     start_date = models.DateField(auto_now=False)
     end_date = models.DateField(auto_now=False)
     is_complete = models.BooleanField(default=False)
+    instructor = models.ForeignKey(Instructor, related_name='instructor')
     school = models.ForeignKey(School, related_name='courses', null=True)
 
     def __str__(self):
@@ -40,15 +50,6 @@ class Student(Member):
 
     class Meta:
         ordering = ['-pk']
-
-    def __str__(self):
-        return "{0.first_name} {0.last_name}".format(self.user)
-
-
-class Instructor(Member):
-    #
-    instructor_id = models.PositiveSmallIntegerField(null=True)
-    school = models.ForeignKey(School, related_name='instructors', null=True, blank=True)
 
     def __str__(self):
         return "{0.first_name} {0.last_name}".format(self.user)

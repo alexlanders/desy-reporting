@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home),
     url(r'^login/', views.login),
+    url(r'^classes/', views.all_classes),
     url(r'^drives/$', views.display),
     url(r'^drive/create/$', views.create_drive),
     url(r'^drive/detail/(?P<pk>.*)/$', views.drive_detail),
