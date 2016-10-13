@@ -41,7 +41,7 @@ class CourseForm(forms.ModelForm):
 
     class Meta:
         model = Course
-        fields = ['title', 'student', 'course_id', 'start_date', 'end_date', 'duration', 'is_complete', 'school']
+        fields = ['title', 'course_id', 'start_date', 'end_date', 'is_complete', 'school']
 
 
 class ObjectiveForm(forms.ModelForm):

@@ -7,10 +7,34 @@ class Member(models.Model):
     user = models.OneToOneField(User)
 
 
+class School(models.Model):
+    name = models.CharField(max_length=120, null=True)
+
+    def __str__(self):
+        return "{}".format(self.name)
+
+
+class Course(models.Model):
+    title = models.CharField(max_length=96)
+    course_id = models.PositiveSmallIntegerField()
+    start_date = models.DateField(auto_now=False)
+    end_date = models.DateField(auto_now=False)
+    is_complete = models.BooleanField(default=False)
+    school = models.ForeignKey(School, related_name='courses', null=True)
+
+    def __str__(self):
+        return "{}".format(self.title)
+
+    def save(self, *args, **kwargs):
+        self.duration = self.end_date - self.start_date
+        return super(Course, self).save(*args, **kwargs)
+
+
 class Student(Member):
     #
     lenses = models.NullBooleanField(default=False)
     permit = models.NullBooleanField(default=False)
+    courses = models.ForeignKey(Course, related_name='students', null=True)
     total_hours_driven = models.PositiveSmallIntegerField(default=0, null=True)
     total_hours_observed = models.PositiveSmallIntegerField(default=0, null=True)
 
@@ -19,13 +43,6 @@ class Student(Member):
 
     def __str__(self):
         return "{0.first_name} {0.last_name}".format(self.user)
-
-
-class School(models.Model):
-    name = models.CharField(max_length=120, null=True)
-
-    def __str__(self):
-        return "{}".format(self.name)
 
 
 class Instructor(Member):
@@ -68,24 +85,6 @@ class Drive(models.Model):
         self.update_hours_driven()
 
         super(Drive, self).save(*args, **kwargs)
-
-
-class Course(models.Model):
-    title = models.CharField(max_length=96)
-    student = models.ForeignKey(Student, related_name='courses', null=True)
-    course_id = models.PositiveSmallIntegerField()
-    start_date = models.DateField(auto_now=False)
-    end_date = models.DateField(auto_now=False)
-    duration = models.DurationField()
-    is_complete = models.BooleanField(default=False)
-    school = models.ForeignKey(School, related_name='courses', null=True)
-
-    def __str__(self):
-        return "{}".format(self.title)
-
-    def save(self, *args, **kwargs):
-        self.duration = self.end_date - self.start_date
-        return super(Course, self).save(*args, **kwargs)
 
 
 class Objective(models.Model):
