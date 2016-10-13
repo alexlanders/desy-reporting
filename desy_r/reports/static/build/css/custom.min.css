@@ -2581,6 +2581,16 @@ a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
     background: #169F85
 }
 
+.btn-inprogress {
+    background: #FFCC33;
+    border: 1px solid #000000;
+    color: #ffffff;
+}
+
+.btn-inprogress:hover, .btn-inprogress:focus, .btn-inprogress:active, .btn-inprogress.active, .open .dropdown-toggle.btn-inprogress {
+    background: #FFC414;
+}
+
 .btn-dark {
     color: #E9EDEF;
     background-color: #4B5F71;
