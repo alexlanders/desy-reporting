@@ -210,20 +210,14 @@
 
             calendar.fullCalendar('unselect');
           },
-          editable: true,
-          events: [{
-            title: 'All Day Event',
-            start: new Date(y, m, 1)
-          }, {
-            title: 'Long Event',
-            start: new Date(y, m, d - 5),
-            end: new Date(y, m, d - 2)
-          }, {
-            title: 'Click for Google',
-            start: new Date(y, m, 28),
-            end: new Date(y, m, 29),
-            url: 'http://google.com/'
-          }]
+          editable: true, {# TODO: Feature: if statement to determine permissions #}
+          events: [
+              {% for class in classes %}
+                  {title: '{{ class.title }}',
+                start: '{{ class.start_date|date:"D d M Y" }}',
+                end: '{{ class.end_date|date:"D d M Y" }}'},
+              {% endfor %}
+          ]
         });
       });
     </script>

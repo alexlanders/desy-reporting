@@ -1,7 +1,7 @@
 from django.test import TestCase
 from mixer.backend.django import mixer
 from django.contrib.auth.models import User
-from .models import Drive, Student, Instructor, Member
+from reports.models import Drive, Student, Instructor, Member
 
 
 # Create your tests here.
@@ -45,7 +45,7 @@ class TestDriveMethod(TestCase):
         # self.perfect_member1.delete()
         # self.perfect_member2.delete()
 
-    def test_perfect_student_total_hours_driven_updates_on_Drive_save(self):
+    def test_perfect_student_total_hours_driven_updates_on_drive_save(self):
         self.perfect_drive.save()
         self.assertEqual(self.perfect_student.total_hours_driven, 1.0)
         next_drive = {
@@ -63,7 +63,8 @@ class TestDriveMethod(TestCase):
         drive.save()
         self.assertEqual(self.perfect_student.total_hours_driven, 3.0)
 
-    def test_random_student_total_hours_driven_updates_on_Drive_save(self):
+
+    def test_random_student_total_hours_driven_updates_on_drive_save(self):
 
         random_drive_hours_driven = self.random_drive.hours_driven
 
@@ -75,3 +76,4 @@ class TestDriveMethod(TestCase):
         total_random_hours = random_drive_hours_driven + next_drive.hours_driven
 
         self.assertEqual(self.random_drive.hours_driven, total_random_hours)
+

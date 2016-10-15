@@ -21,7 +21,6 @@ def login(request):
 def all_classes(request):
     class_query = Course.objects.all()
     paginator = Paginator(class_query, 25)
-
     page = request.GET.get('page')
     try:
         # One page worth of students
@@ -146,6 +145,18 @@ def student_detail(request, pk=None):
 
 
 def calendar_page(request):
-    context = {}
-    return render(request, 'calendar.html', context)
+    class_query = Course.objects.order_by('-end_date')
+    paginator = Paginator(class_query, 25)
+    page = request.GET.get('page')
+    try:
+        # One page worth of classes
+        classes = paginator.page(page)
+        class_range = list(paginator.page_range)[int(page):int(page) + 5]
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        classes = paginator.page(1)
+        class_range = list(paginator.page_range)[0:5]
 
+
+    context = {'classes': classes, 'class_range': list(class_range)}
+    return render(request, 'calendar.html', context)

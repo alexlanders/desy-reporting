@@ -28,6 +28,7 @@ class Course(models.Model):
     course_id = models.PositiveSmallIntegerField()
     start_date = models.DateField(auto_now=False)
     end_date = models.DateField(auto_now=False)
+    duration = models.DurationField(null=True)
     is_complete = models.BooleanField(default=False)
     instructor = models.ForeignKey(Instructor, related_name='instructor')
     school = models.ForeignKey(School, related_name='courses', null=True)
@@ -69,7 +70,6 @@ class Drive(models.Model):
     signature = models.NullBooleanField(default=False)
 
     def update_hours_driven(self):
-        print(self.id)
         if self.id is None:
             self.student.total_hours_driven += self.hours_driven
             self.student.total_hours_observed += self.hours_observed

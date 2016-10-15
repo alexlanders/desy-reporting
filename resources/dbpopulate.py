@@ -6,7 +6,7 @@ from .models import Drive, Student, Instructor, Member
 
 # Create your tests here.
 
-class TestDriveMethod(TestCase):
+class DriveMethod(TestCase):
 
     def setUp(self):
         drive_data = {
