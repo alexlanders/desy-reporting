@@ -87,18 +87,20 @@
                         </div>
                         <div class="dataTables_paginate paging_simple_numbers" id="datatable-buttons_paginate">
                             <ul class="pagination">
-                                <li class="paginate_button previous disabled" id="datatable-buttons_previous">
-                                    {% if students.has_previous %}
-                                    <a href="?page={{ students.previous_page_number }}" aria-controls="datatable-buttons" data-dt-idx="0"
-                                        tabindex="0">Previous</a>
-                                    {% endif %}
+                                <li class="paginate_button previous" id="datatable-buttons_previous">
+
+                                        {% if students.has_previous %}
+                                            <a href="?page={{ students.previous_page_number }}" aria-controls="datatable-buttons" data-dt-idx="0"
+                                                tabindex="0">Previous</a>
+                                        {% endif %}
                                 </li>
 
-                                <li class="paginate_button active"><a href="{{ students.paginator.page }}" aria-controls="datatable-buttons"
-                                                                      data-dt-idx="1" tabindex="0">{{ students.paginator.page }}</a></li>
-                                {{ student_range }}
+                                <li class="paginate_button active">
+                                    <a href="{{ students.number }}" aria-controls="datatable-buttons" data-dt-idx="1"
+                                       tabindex="0">{{ students.number }}</a></li>
+
                                 {% for page in student_range %}
-                                    {% if forloop.counter != 1 %} | {% endif %}
+
 
                                     <li class="paginate_button "><a href="?page={{ page }}" aria-controls="datatable-buttons"
                                                                 data-dt-idx="2" tabindex="0">{{ page }}</a></li>

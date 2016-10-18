@@ -3242,7 +3242,8 @@ ul.messages {
 
 ul.messages li, .tasks li {
     border-bottom: 1px dotted #e6e6e6;
-    padding: 8px 0
+    padding: 8px 0;
+    height: 150px;
 }
 
 ul.messages li img.avatar, img.avatar {
@@ -5139,4 +5140,8 @@ ul.notifications {
 .dropzone {
     min-height: 300px;
     border: 1px solid #e5e5e5
+}
+
+#datatable-buttons_previous {
+    cursor: pointer;
 }
