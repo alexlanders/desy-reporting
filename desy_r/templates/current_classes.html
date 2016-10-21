@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+       <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Classes</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Projects</h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+
+                    <!-- start project list -->
+                    <table class="table table-striped projects">
+                      <thead>
+                        <tr>
+                          <th style="width: 1%">ID</th>
+                          <th style="width: 20%">Class Name</th>
+                          <th>Instructor</th>
+                          <th>School</th>
+                          <th>Status</th>
+                          <th style="width: 20%">#Edit</th>
+                        </tr>
+                      </thead>
+                        <tbody>
+
+                        {% for class in classes %}
+                            {% if class.is_complete == False %}
+                        <tr>
+                          <td>{{ class.course_id }}</td>
+                          <td>
+                            <a>{{ class.title }}</a>
+                            <br />
+                            {% if class.is_complete == False %}
+                            <small>Ends {{ class.end_date }}</small>
+                            {% else %}
+                            <small>Ended {{ class.end_date }}</small>
+                            {% endif %}
+                          </td>
+                          <td>
+                            <ul class="list-inline">
+                              <li>
+                                {{ class.instructor }}
+                              </li>
+                            </ul>
+                          </td>
+                          <td>
+                            <div>
+                              <div>{{ class.school }}</div>
+                            </div>
+                          </td>
+                          <td>
+                            {% if class.is_complete == True %}
+                            <button type="button" class="btn btn-success btn-xs">Completed</button>
+                            {% else %}
+                            <button type="button" class="btn btn-inprogress btn-xs">In Progress</button>
+                            {% endif %}
+                          </td>
+                          <td>
+                            <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+                            <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
+                          </td>
+                        </tr>
+                            {% endif %}
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                    <!-- end project list -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+   <!-- jQuery -->
+    <script src="{% static "vendors/jquery/dist/jquery.min.js" %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static "vendors/bootstrap/dist/js/bootstrap.min.js" %}"></script>
+    <!-- FastClick -->
+    <script src="{% static "vendors/fastclick/lib/fastclick.js" %}"></script>
+    <!-- NProgress -->
+    <script src="{% static "vendors/nprogress/nprogress.js" %}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{% static "vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" %}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static "build/js/custom.min.js" %}"></script>
+
+  </body>
+
+{% endblock %}

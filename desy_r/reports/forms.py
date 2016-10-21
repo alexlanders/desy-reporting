@@ -20,7 +20,8 @@ class DriveForm(forms.ModelForm):
             'comments': forms.TextInput(attrs={'class': '', 'placeholder': ''}),
         }
 
-        fields = ['student', 'instructor', 'date', 'score', 'deductions', 'comments']
+        fields = ['student', 'instructor', 'date', 'score', 'deductions', 'comments',
+                  'hours_driven', 'hours_observed', 'signature']
 
 
 class StudentForm(forms.ModelForm):

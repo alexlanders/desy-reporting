@@ -35,6 +35,23 @@ def all_classes(request):
     return render(request, 'all_classes.html', context)
 
 
+def current_classes(request):
+    class_query = Course.objects.all()
+    paginator = Paginator(class_query, 25)
+    page = request.GET.get('page')
+    try:
+        # One page worth of students
+        classes = paginator.page(page)
+        class_range = list(paginator.page_range)[int(page):int(page) + 5]
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        classes = paginator.page(1)
+        class_range = list(paginator.page_range)[0:5]
+
+    context = {'classes': classes, 'class_range': list(class_range)}
+    return render(request, 'current_classes.html', context)
+
+
 def all_students(request):
     student_query = Student.objects.all()
     paginator = Paginator(student_query, 25)
@@ -53,6 +70,24 @@ def all_students(request):
     return render(request, 'students.html', context)
 
 
+def current_students(request):
+    student_query = Student.objects.all()
+    paginator = Paginator(student_query, 25)
+
+    page = request.GET.get('page')
+    try:
+        # One page worth of students
+        students = paginator.page(page)
+        student_range = list(paginator.page_range)[int(page):int(page)+5]
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        students = paginator.page(1)
+        student_range = list(paginator.page_range)[0:5]
+
+    context = {'students': students, 'student_range': list(student_range)}
+    return render(request, 'current_students.html', context)
+
+
 def create_drive(request):
     form = DriveForm(request.POST or None)
     if form.is_valid():
@@ -62,7 +97,7 @@ def create_drive(request):
         return HttpResponseRedirect(student.absolute_url())
 
     context = {'form': form}
-    return render(request, 'drive_form.html', context)
+    return render(request, 'create_drive.html', context)
 
 
 def create_student(request):
