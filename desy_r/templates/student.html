@@ -57,6 +57,13 @@
                             <i class="fa fa-credit-card-alt"></i> Has learner's permit
                           </li>
                           {% endif %}
+                          <li>
+                              {% if student.courses.is_complete == True %}
+                                  <button type="button" class="btn btn-success btn-xs">{{ student.courses.title }}</button>
+                              {% else %}
+                                  <button type="button" class="btn btn-inprogress btn-xs">{{ student.courses.title }}</button>
+                              {% endif %}
+                          </li>
                       </ul>
 
                       <br />
