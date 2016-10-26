@@ -66,7 +66,7 @@ def all_students(request):
         students = paginator.page(1)
         student_range = list(paginator.page_range)[0:5]
 
-    student_list = [str(student) for student in student_query]
+    student_list = [(str(student), str(student.user.id)) for student in student_query]
 
     context = {'students': students, 'student_range': list(student_range), 'student_list': student_list}
     return render(request, 'students.html', context)

@@ -53,7 +53,7 @@ class Student(Member):
         ordering = ['-pk']
 
     def __str__(self):
-        return "{0.first_name} {0.last_name}".format(self.user)
+        return '{0.first_name} {0.last_name}'.format(self.user)
 
 
 class Drive(models.Model):
