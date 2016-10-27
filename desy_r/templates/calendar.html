@@ -195,27 +195,29 @@
               return false;
             });
           },
-          eventClick: function(calEvent, jsEvent, view) {
-            $('#fc_edit').click();
-            $('#title2').val(calEvent.title);
 
-            categoryClass = $("#event_type").val();
-
-            $(".antosubmit2").on("click", function() {
-              calEvent.title = $("#title2").val();
-
-              calendar.fullCalendar('updateEvent', calEvent);
-              $('.antoclose2').click();
-            });
-
-            calendar.fullCalendar('unselect');
-          },
           editable: true, {# TODO: Feature: if statement to determine permissions #}
           events: [
               {% for class in classes %}
-                  {title: '{{ class.title }}',
-                start: '{{ class.start_date|date:"D d M Y" }}',
-                end: '{{ class.end_date|date:"D d M Y" }}'},
+                      {title: "{% autoescape off %} {{ class.title }} Begins {% endautoescape %}",
+                          start: '{{ class.start_date|date:"D d M Y" }}',
+                          end: '{{ class.start_date|date:"D d M Y" }}',
+                          allDay: true
+                      },
+
+                      {title: "{% autoescape off %} {{ class.title }} Ends {% endautoescape %}",
+                          start: '{{ class.end_date|date:"D d M Y" }}',
+                          end: '{{ class.end_date|date:"D d M Y" }}',
+                          allDay: true
+                      },
+              {% endfor %}
+              {% for drive in drives %}
+                      {title: "{% autoescape off %} {{ drive.student }} ({{ drive.score }}) {% endautoescape %}",
+                          start: '{{ drive.date|date:"D d M Y" }}',
+                          end: '{{ drive.date|date:"D d M Y" }}',
+                          allDay: true,
+                          url: '/students/' + {{ drive.student.id }}
+                      },
               {% endfor %}
           ]
         });

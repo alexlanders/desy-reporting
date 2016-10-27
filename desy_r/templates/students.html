@@ -154,21 +154,25 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
+
+        function Parse(ul, item) {
+            var $result = $("<li></li>").data("item.autocomplete", item).append("<a>" + item.label + "</a>").appendTo(ul);
+            return $result
+                 };
+
           $( function() {
             var availableTags = [
                 {% for student in student_list %}
                     "{% autoescape off %} {{ student }} {% endautoescape %}",
                 {% endfor %}
             ];
-            $( "#tags" ).autocomplete({
+            $("#tags").autocomplete({
                 source: availableTags,
-
                 select: function (evt, ui) {
-                    location.href = '/students/' + ui.item.label;
-
+                    location.href = "/students/" + ui.item.label;
                 }
-            });
-          } );
+            }).data("ui-autocomplete")._renderItem = Parse(ul, item);
+          })
     </script>
 
 

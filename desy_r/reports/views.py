@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import islice
 from datetime import datetime
 from reports.forms import DriveForm, LoginForm, StudentForm, InstructorForm, CourseForm, MemberForm
-from .models import Student, Member, Course
+from .models import Student, Member, Course, Drive
 
 
 def home(request):
@@ -66,9 +66,11 @@ def all_students(request):
         students = paginator.page(1)
         student_range = list(paginator.page_range)[0:5]
 
-    student_list = [(str(student), str(student.user.id)) for student in student_query]
+    student_list = ["{}".format(student) for student in student_query]
+    student_id_list = ["{}".format(student.user.id) for student in student_query]
 
-    context = {'students': students, 'student_range': list(student_range), 'student_list': student_list}
+    context = {'students': students, 'student_range': list(student_range), 'student_list': student_list,
+               'student_id_list': student_id_list}
     return render(request, 'students.html', context)
 
 
@@ -194,6 +196,7 @@ def calendar_page(request):
         classes = paginator.page(1)
         class_range = list(paginator.page_range)[0:5]
 
+    drives = Drive.objects.all()
 
-    context = {'classes': classes, 'class_range': list(class_range)}
+    context = {'classes': classes, 'class_range': list(class_range), 'drives': drives}
     return render(request, 'calendar.html', context)
