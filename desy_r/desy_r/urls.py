@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^login/', views.login),
     url(r'^classes/all', views.all_classes),
     url(r'^classes/current', views.current_classes),
+    url(r'^classes/(?P<pk>\d*)/', views.class_detail),
     url(r'^drives/$', views.display),
     url(r'^drive/create/$', views.create_drive),
     url(r'^drive/detail/(?P<pk>.*)/$', views.drive_detail),

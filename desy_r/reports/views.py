@@ -183,6 +183,17 @@ def student_detail(request, pk=None):
     return render(request, 'student.html', context)
 
 
+def class_detail(request, pk=None):
+    klass = Course.objects.get(id=pk)
+    students = klass.students.all()
+    drives = Drive.objects.all()
+
+    number_of_students = students.count()
+
+    context = {'klass': klass, 'students': students, 'number_of_students': number_of_students, 'drives': drives}
+    return render(request, 'class_detail.html', context)
+
+
 def calendar_page(request):
     class_query = Course.objects.order_by('-end_date')
     paginator = Paginator(class_query, 25)
