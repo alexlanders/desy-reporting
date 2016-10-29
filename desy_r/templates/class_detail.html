@@ -7,121 +7,144 @@
               <div class="">
                 <div class="page-title">
                   <div class="title_left">
-                    <h3>{{ classes.title }} <small> {{ classes.start_date }} - {{ classes.end_date }}</small></h3>
+                    <h3>{{ klass.title }} <small> {{ klass.start_date }} - {{ klass.end_date }}</small></h3>
                   </div>
                 </div>
 
 
                 <div class="clearfix"></div>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="x_panel">
-                      <div class="x_title">
-                        <h2>Class Details</h2>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="x_panel">
+                              <div class="x_title">
+                                  <h2>Class Details</h2>
 
-                        <div class="clearfix"></div>
-                      </div>
+                                  <div class="clearfix"></div>
+                              </div>
 
-                      <div class="x_content">
+                              <div class="x_content">
 
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                  <div class="col-md-9 col-sm-9 col-xs-12">
 
-                          <ul class="stats-overview">
-                            <li>
-                              <span class="name"> No. of Students </span>
-                              <span class="value text-success"> {{ number_of_students }} </span>
-                            </li>
-                            <li>
-                              <span class="name"> Total amount spent </span>
-                              <span class="value text-success"> 2000 </span>
-                            </li>
-                            <li class="hidden-phone">
-                              <span class="name"> Estimated project duration </span>
-                              <span class="value text-success"> 20 </span>
-                            </li>
-                          </ul>
-                          <br />
+                                      <ul class="stats-overview">
+                                          <li>
+                                              <span class="name"> No. of Students </span>
+                                              <span class="value text-success"> {{ number_of_students }} </span>
+                                          </li>
+                                          <li>
+                                              <span class="name"> Average Drive Score </span>
+                                              <span class="value text-success"> {{ avg_drive_score }} </span>
+                                          </li>
+                                          <li class="hidden-phone">
+                                              <span class="name"> Status </span>
+                                              <br/>
+                                              {% if klass.is_complete == True %}
+                                                  <button type="button" class="btn btn-success btn-xs">Completed
+                                                  </button>
+                                              {% else %}
+                                                  <button type="button" class="btn btn-inprogress btn-xs">In Progress
+                                                  </button>
+                                              {% endif %}
+                                          </li>
+                                      </ul>
+                                      <br/>
 
-                          <div id="mainb" style="height:350px;">
-                               <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
+                            <div class="row">
+                                <div id='calendar'></div>
+                                <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
 
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
-          </div>
-          <div class="modal-body">
-            <div id="testmodal" style="padding: 5px 20px;">
-              <form id="antoform" class="form-horizontal calender" role="form">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Title</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="title" name="title">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Description</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary antosubmit">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">×
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel">New Calendar Entry</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="testmodal" style="padding: 5px 20px;">
+                                                    <form id="antoform" class="form-horizontal calender" role="form">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Title</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="title"
+                                                                       name="title">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Description</label>
+                                                            <div class="col-sm-9">
+                                                                <textarea class="form-control" style="height:55px;"
+                                                                          id="descr" name="descr"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default antoclose"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="button" class="btn btn-primary antosubmit">Save changes
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog"
+                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
 
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
-          </div>
-          <div class="modal-body">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-hidden="true">×
+                                                </button>
+                                                <h4 class="modal-title" id="myModalLabel2">Edit Calendar Entry</h4>
+                                            </div>
+                                            <div class="modal-body">
 
-            <div id="testmodal2" style="padding: 5px 20px;">
-              <form id="antoform2" class="form-horizontal calender" role="form">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Title</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="title2" name="title2">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">Description</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
-                  </div>
-                </div>
+                                                <div id="testmodal2" style="padding: 5px 20px;">
+                                                    <form id="antoform2" class="form-horizontal calender" role="form">
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Title</label>
+                                                            <div class="col-sm-9">
+                                                                <input type="text" class="form-control" id="title2"
+                                                                       name="title2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-sm-3 control-label">Description</label>
+                                                            <div class="col-sm-9">
+                                                                <textarea class="form-control" style="height:55px;"
+                                                                          id="descr2" name="descr"></textarea>
+                                                            </div>
+                                                        </div>
 
-              </form>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default antoclose2"
+                                                        data-dismiss="modal">Close
+                                                </button>
+                                                <button type="button" class="btn btn-primary antosubmit2">Save changes
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-    <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
-    <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+                                <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+                                <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
 
 
-                          </div>
+                            </div>
 
                           <div>
 
-                            <h4>Recent Activity</h4>
 
                             <!-- end of user messages -->
                             <ul class="messages">
@@ -141,7 +164,15 @@
                           <section class="panel">
 
                             <div class="x_title">
-                              <h2>Students</h2>
+                                <h2> <i class="fa fa-user"></i> Instructor</h2>
+                              <div class="clearfix"></div>
+                                <div class="project_detail">
+                                <h3>{{ klass.instructor }}</h3>
+                                </div>
+                            </div>
+
+                              <div class="x_title">
+                                  <h2><i class="fa fa-users"></i> Students</h2>
                               <div class="clearfix"></div>
                             </div>
                             <div class="panel-body">
@@ -247,13 +278,13 @@
           editable: true, {# TODO: Feature: if statement to determine permissions #}
           events: [
 
-                      {title: "{% autoescape off %} {{ klass.title }} Begins {% endautoescape %}",
+                      {title: "{% autoescape off %} {{ klass.title }} Begins{% endautoescape %}",
                           start: '{{ klass.start_date|date:"D d M Y" }}',
                           end: '{{ klass.start_date|date:"D d M Y" }}',
                           allDay: true
                       },
 
-                      {title: "{% autoescape off %} {{ klass.title }} Ends {% endautoescape %}",
+                      {title: "{% autoescape off %} {{ klass.title }} Ends{% endautoescape %}",
                           start: '{{ klass.end_date|date:"D d M Y" }}',
                           end: '{{ klass.end_date|date:"D d M Y" }}',
                           allDay: true
@@ -261,7 +292,7 @@
 
               {% for student in students %}
                   {% for drive in student.drives.all %}
-              {title: "{% autoescape off %} {{ student }} ({{ drive.score }}) {% endautoescape %}",
+              {title: "{% autoescape off %}{{ student }} ({{ drive.score }}){% endautoescape %}",
                           start: '{{ drive.date|date:"D d M Y" }}',
                           end: '{{ drive.date|date:"D d M Y" }}',
                           allDay: true,

@@ -188,9 +188,13 @@ def class_detail(request, pk=None):
     students = klass.students.all()
     drives = Drive.objects.all()
 
+    scores = [drive.score for student in students for drive in student.drives.all()]
+    avg_drive_score = sum(scores) // len(scores)
+
     number_of_students = students.count()
 
-    context = {'klass': klass, 'students': students, 'number_of_students': number_of_students, 'drives': drives}
+    context = {'klass': klass, 'students': students, 'number_of_students': number_of_students, 'drives': drives,
+               'avg_drive_score': avg_drive_score}
     return render(request, 'class_detail.html', context)
 
 

@@ -60,6 +60,7 @@ class Drive(models.Model):
     # Attributes for drives in db
     student = models.ForeignKey(Student, related_name='drives', null=True)
     instructor = models.ForeignKey(Instructor, related_name='instructors', null=True)
+    course = models.ForeignKey(Course, related_name='course', null=True)
     date = models.DateField(auto_now=False)
     updated = models.DateField(auto_now=False, null=True)
     score = models.PositiveSmallIntegerField()
