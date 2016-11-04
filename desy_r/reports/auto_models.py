@@ -33,7 +33,6 @@ class Courses(models.Model):
         db_table = 'courses'
 
 
-
 class DriveTemplateBehaviors(models.Model):
     drive_template_behavior_id = models.AutoField(primary_key=True)
     drive_template_id = models.IntegerField()
